@@ -14,19 +14,19 @@ export default function Footer() {
       city: "Accra Head Office",
       address: "East Legon, Accra",
       phone: "+233 30 123 4567",
-      email: "accra@educonnect.gh",
+      email: "accra@tenasi.gh",
     },
     {
       city: "Kumasi Regional",
       address: "Adum, Kumasi",
       phone: "+233 32 234 5678",
-      email: "kumasi@educonnect.gh",
+      email: "kumasi@tenasi.gh",
     },
     {
       city: "Tamale Northern",
       address: "Central Tamale",
       phone: "+233 37 345 6789",
-      email: "tamale@educonnect.gh",
+      email: "tamale@tenasi.gh",
     },
   ];
 
@@ -164,7 +164,7 @@ export default function Footer() {
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-primary" />
                   <span className="text-white/80 font-inter">
-                    hello@educonnect.gh
+                    hello@tenasi.gh
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -186,7 +186,7 @@ export default function Footer() {
                   For urgent technical issues
                 </p>
                 <p className="font-semibold text-primary font-poppins">
-                  +233 24 7 Tenasi
+                  +233 32 234 5678
                 </p>
               </div>
             </div>
@@ -230,7 +230,7 @@ export default function Footer() {
         <div className="py-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-white/60 text-sm font-inter">
-              © 2024 EduConnect Ghana. All rights reserved. Proudly serving
+              © 2024 tenasi Ghana. All rights reserved. Proudly serving
               Ghanaian education.
             </div>
 
