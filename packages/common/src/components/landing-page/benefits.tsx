@@ -58,6 +58,7 @@ export default function Benefits() {
       color: "bg-yellow-400",
       card: "bg-yellow-200",
     },
+    {},
   ];
 
   return (
@@ -84,7 +85,8 @@ export default function Benefits() {
                 key={index}
                 className={cn(
                   "flex items-start space-x-6 p-6 rounded-xl border-2 border-black",
-                  benefit.card
+                  benefit.card,
+                  index === benefits.length - 1 && "hidden"
                 )}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
