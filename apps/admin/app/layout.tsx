@@ -1,7 +1,7 @@
 import { montserrat } from "@workspace/common/lib/server";
 
 import "@workspace/ui/globals.css";
-import { Providers } from "@/components/providers";
+import { Providers } from "@workspace/common/components/providers";
 
 export default function RootLayout({
   children,
