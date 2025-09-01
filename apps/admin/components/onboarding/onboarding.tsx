@@ -20,10 +20,15 @@ import StepThree from "./step-three";
 import StepFour from "./step-four";
 import useStepForms from "@/hooks/use-step-forms";
 import useOnboarding from "@/hooks/use-onboarding";
+import { SchoolOnboardingData } from "@/lib/schema";
+import { useSearchParams } from "next/navigation";
 
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
   const { isLoading, onSubmit } = useOnboarding();
 
@@ -45,22 +50,71 @@ export default function Onboarding() {
     }
   };
 
-  const handleSkip = () => {
+  const handleSkip = async () => {
     if (currentStep === 4) {
-      completeOnboarding();
+      // Mark step as completed when skipping
+      setCompletedSteps([...completedSteps, currentStep]);
+
+      // Submit with minimal/default data for step 4
+      const formData = new FormData();
+      formData.append("step", currentStep.toString());
+      formData.append("studentImportMethod", "manual");
+      formData.append("excelFile", ""); // empty file
+
+      await onSubmit(formData, currentStep, token as string);
     }
   };
 
-  const completeOnboarding = () => {
-    const values = {
-      ...schoolProfileForm.getValues(),
-      ...academicStructureForm.getValues(),
-      ...configurationForm.getValues(),
-      ...optionalSetupForm.getValues(),
-    };
+  const handleSubmitStep = async () => {
+    let values: FormData | SchoolOnboardingData = { step: 0 };
+
+    switch (currentStep) {
+      case 1: {
+        const data = schoolProfileForm.getValues();
+        const formData = new FormData();
+        formData.append("schoolName", data.schoolName);
+        formData.append("institutionType", data.institutionType);
+        formData.append("address", data.address);
+        formData.append("city", data.city);
+        formData.append("state", data.state);
+        formData.append("zipCode", data.zipCode);
+        formData.append("country", data.country);
+        formData.append("contactEmail", data.contactEmail);
+        formData.append("phoneNumber", data.phoneNumber);
+        formData.append("website", String(data.website));
+        formData.append("socialMedia", String(data.socialMedia));
+        formData.append("logo", data.logo);
+        values = formData;
+
+        break;
+      }
+      case 2: {
+        values = academicStructureForm.getValues();
+
+        break;
+      }
+      case 3: {
+        values = configurationForm.getValues();
+
+        break;
+      }
+      case 4: {
+        const data = optionalSetupForm.getValues();
+        const formData = new FormData();
+        formData.append("step", currentStep.toString());
+        formData.append(
+          "studentImportMethod",
+          String(data.studentImportMethod)
+        );
+        formData.append("excelFile", data.excelFile);
+        values = formData;
+
+        break;
+      }
+    }
     setCompletedSteps([...completedSteps, currentStep]);
 
-    onSubmit(values);
+    return await onSubmit(values, currentStep, token as string);
   };
 
   const handleNext = async () => {
@@ -83,18 +137,20 @@ export default function Onboarding() {
         isValid = true;
     }
 
-    if (isValid)
-      if (currentStep < steps.length) {
-        setCompletedSteps((prev) => {
-          const updated = new Set(prev);
-          updated.add(currentStep);
-          return [...updated];
-        });
+    if (isValid) {
+      const response = await handleSubmitStep(); // Make this async
 
-        setCurrentStep((prev) => prev + 1);
-      } else {
-        completeOnboarding();
-      }
+      if (response)
+        if (currentStep < steps.length) {
+          // Only move to next step after successful submission
+          setCompletedSteps((prev) => {
+            const updated = new Set(prev);
+            updated.add(currentStep);
+            return [...updated];
+          });
+          setCurrentStep((prev) => prev + 1);
+        }
+    }
   };
 
   const renderStepContent = () => {

@@ -1,4 +1,5 @@
 import { Montserrat } from "next/font/google";
+import z from "zod";
 
 export const montserrat = Montserrat({
   subsets: ["latin"],
@@ -6,3 +7,5 @@ export const montserrat = Montserrat({
   variable: "--font-montserrat",
   display: "swap",
 });
+
+export {z}

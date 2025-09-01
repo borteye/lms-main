@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "@workspace/common/lib/server";
 
 export const schoolProfileSchema = z.object({
   schoolName: z
@@ -69,6 +69,7 @@ export const academicStructureSchema = z.object({
   academicYearEnd: z.string().min(1, "Academic year end date is required"),
   termSystem: z.string().min(1, "Term system is required"),
   terms: z.array(termObject).optional(),
+  currentTerm: z.string().min(1, "Current term is required"),
 });
 
 export const configurationSchema = z.object({
@@ -89,10 +90,14 @@ export type ConfigurationData = z.infer<typeof configurationSchema>;
 export type OptionalSetupData = z.infer<typeof optionalSetupSchema>;
 
 export const schoolOnboarding = z
-  .object({})
+  .object({
+    step: z.number().min(1).max(4).optional(),
+  })
   .merge(schoolProfileSchema)
   .merge(academicStructureSchema)
   .merge(configurationSchema)
-  .merge(optionalSetupSchema);
+  .merge(optionalSetupSchema)
+  .partial();
 
-export type SchoolOnboardingData = z.infer<typeof schoolOnboarding>;
+export type SchoolOnboardingData = z.infer<typeof schoolOnboarding> & {
+  schoolId?: string;};

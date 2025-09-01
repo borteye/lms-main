@@ -1,6 +1,5 @@
 "use client";
 
-import { SchoolProfileData } from "@workspace/common/lib/admin-onboarding-schema";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
@@ -17,6 +16,7 @@ import { Mail, MapPin, Upload } from "lucide-react";
 import Image from "next/image";
 import { useMemo } from "react";
 import { countryList } from "@workspace/common/lib/client";
+import { SchoolProfileData } from "@/lib/schema";
 
 export default function StepOne({
   schoolProfileForm,

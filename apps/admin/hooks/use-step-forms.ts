@@ -9,7 +9,7 @@ import {
   optionalSetupSchema,
   SchoolProfileData,
   schoolProfileSchema,
-} from "@workspace/common/lib/admin-onboarding-schema";
+} from "@/lib/schema";
 import { useReactHookForm, zodResolver } from "@workspace/ui/lib/client";
 
 export default function useStepForms() {
@@ -41,6 +41,7 @@ export default function useStepForms() {
       academicYearEnd: "",
       termSystem: "",
       terms: [],
+      currentTerm: "",
     },
   });
 

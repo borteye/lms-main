@@ -1,4 +1,3 @@
-import { ConfigurationData } from "@workspace/common/lib/admin-onboarding-schema";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import {
@@ -11,6 +10,7 @@ import {
 import { UseFormReturn } from "@workspace/ui/lib/client";
 import { Award, Settings, Shield } from "lucide-react";
 import { moment } from "@workspace/common/lib/client";
+import { ConfigurationData } from "@/lib/schema";
 
 export default function StepThree({
   configurationForm,
