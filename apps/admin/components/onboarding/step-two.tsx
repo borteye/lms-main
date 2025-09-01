@@ -1,6 +1,6 @@
 "use client";
 
-import { AcademicStructureData } from "@workspace/common/lib/admin-onboarding-schema";
+import { AcademicStructureData } from "@/lib/schema";
 import { colors } from "@workspace/common/lib/utils";
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
@@ -45,7 +45,6 @@ export default function StepTwo({
   };
 
   const removeDepartment = (index: number) => {
-    console.log("removeDepartmentIndex");
     const currentDepartments = getValues("departments");
     setValue(
       "departments",
@@ -385,6 +384,34 @@ export default function StepTwo({
               </div>
             ))}
           </div>
+        </div>
+        <div>
+          <Label
+            htmlFor="currentTerm"
+            className="text-sm font-medium text-gray-7"
+          >
+            Current Term <span className="text-destructive">*</span>
+          </Label>
+          <Select
+            value={watch("currentTerm")}
+            onValueChange={(value) => setValue("currentTerm", value)}
+          >
+            <SelectTrigger className="mt-1">
+              <SelectValue placeholder="Select current term" />
+            </SelectTrigger>
+            <SelectContent>
+              {getValues("terms")?.map((term, index) => (
+                <SelectItem key={index} value={term?.name as string}>
+                  {term?.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {formState.errors.currentTerm && (
+            <p className="text-destructive text-sm mt-1">
+              {formState.errors.currentTerm.message}
+            </p>
+          )}
         </div>
       </div>
     </div>

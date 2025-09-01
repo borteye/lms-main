@@ -8,9 +8,9 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import { UseFormReturn } from "@workspace/ui/lib/client";
-import { OptionalSetupData } from "@workspace/common/lib/admin-onboarding-schema";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
+import { OptionalSetupData } from "@/lib/schema";
 
 export default function StepFour({
   optionalSetupForm,
