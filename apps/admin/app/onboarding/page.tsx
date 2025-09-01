@@ -1,8 +1,10 @@
 import Onboarding from "@/components/onboarding/onboarding";
-
+import { Suspense } from "react";
 
 export default function OnboardingPage() {
-
-  return <Onboarding   />
-    
+  return (
+    <Suspense>
+      <Onboarding />
+    </Suspense>
+  );
 }
