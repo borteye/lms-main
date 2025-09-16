@@ -38,7 +38,7 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: oklch(0.7275 0.1301 180.02);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -169,5 +169,22 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .admin_banner {
+    background-image: url("../../../common/src/assets/admin_banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
