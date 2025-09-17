@@ -57,7 +57,8 @@ export default function Features() {
       title: "Science Modules",
       description:
         "Physics, Chemistry, Biology with interactive labs and simulations",
-      className: "bg-gradient-to-tr from-primary/70 via-primary/90 to-primary text-white",
+      className:
+        "bg-gradient-to-tr from-primary/70 via-primary/90 to-primary text-white",
       icon: "🧪",
     },
     {
@@ -72,8 +73,7 @@ export default function Features() {
       title: "Languages & Literature",
       description:
         "English, Local languages, Literature with cultural connections",
-      className:
-        "bg-gradient-to-tr from-bg-teall/70 via-teall/90 to-teall",
+      className: "bg-gradient-to-tr from-bg-teall/70 via-teall/90 to-teall",
       icon: "📚",
     },
   ];
@@ -154,15 +154,6 @@ export default function Features() {
               ))}
             </div>
           </div>
-
-          {/* <div className="relative float-animation">
-            <img 
-              src={dashboardMockup}
-              alt="EduConnect Ghana Dashboard Interface"
-              className="rounded-3xl shadow-elegant w-full h-auto"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent rounded-3xl"></div>
-          </div> */}
         </div>
       </div>
     </section>
