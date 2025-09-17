@@ -18,9 +18,25 @@ export interface LoginResponse {
 
 export interface MetaData {
   id: number;
-  role: "admin" | "student" | "teacher";
+  role: Role;
   schoolId: number;
   email: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
 }
+
+export interface SchoolStats {
+  id: string;
+  label: string;
+  value: number;
+}
+
+export interface NamedEntity {
+  id: number;
+  name: string;
+}
+
+export type ClassroomLevels = NamedEntity;
+export type Department = NamedEntity;
+
+export type Role = "admin" | "student" | "teacher";
