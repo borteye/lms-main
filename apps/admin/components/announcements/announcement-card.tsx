@@ -1,6 +1,6 @@
 import EllipseModal from "@workspace/common/components/ellipse-modal";
 import { Users } from "lucide-react";
-import DeleteModal from "../user-management/delete-modal";
+import DeleteModal from "@workspace/common/components/delete-modal";
 import EditAnnouncement from "./edit-announcement";
 
 export default function AnnouncementCard() {

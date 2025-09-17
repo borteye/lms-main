@@ -1,7 +1,7 @@
 import { BookOpen, Clock, Users } from "lucide-react";
 import EllipseModal from "../../../../packages/common/src/components/ellipse-modal";
 import EditCourse from "./edit-course";
-import DeleteModal from "../user-management/delete-modal";
+import DeleteModal from "@workspace/common/components/delete-modal";
 
 export default function CourseCard() {
   return (

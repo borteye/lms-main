@@ -27,53 +27,6 @@ export default function CoursesPage() {
     { id: "classes", label: "Active Classes", value: 57 },
   ];
 
-  const courses = [
-    {
-      code: "CS101",
-      title: "Introduction to Computer Science",
-      department: "Computer Science",
-      level: "100 Level",
-      enrolled: 180,
-      instructors: 3,
-      status: "active" as const,
-    },
-    {
-      code: "MTH201",
-      title: "Calculus II",
-      department: "Mathematics",
-      level: "200 Level",
-      enrolled: 120,
-      instructors: 2,
-      status: "active" as const,
-    },
-    {
-      code: "ENG305",
-      title: "Technical Writing",
-      department: "English",
-      level: "300 Level",
-      enrolled: 95,
-      instructors: 1,
-      status: "draft" as const,
-    },
-    {
-      code: "PHY110",
-      title: "General Physics I",
-      department: "Physics",
-      level: "100 Level",
-      enrolled: 210,
-      instructors: 2,
-      status: "active" as const,
-    },
-    {
-      code: "BIO450",
-      title: "Molecular Biology",
-      department: "Biology",
-      level: "400 Level",
-      enrolled: 60,
-      instructors: 2,
-      status: "archived" as const,
-    },
-  ];
 
   return (
     <div className="flex flex-col gap-y-12">
