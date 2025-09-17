@@ -3,11 +3,12 @@ import {
   LayoutDashboard,
   BookOpen,
   FileText,
-  GraduationCap, LogOut,
+  GraduationCap,
+  LogOut,
   Users,
   School,
   Building2,
-  Megaphone
+  Megaphone,
 } from "lucide-react";
 
 export const navigationItems = [
@@ -16,7 +17,7 @@ export const navigationItems = [
     label: "Overview",
     icon: LayoutDashboard,
     href: "/dashboard",
-    permissions: ["lecturer", "admin", "student"],
+    permissions: ["teacher", "admin", "student"],
   },
   {
     id: "department",
@@ -58,14 +59,21 @@ export const navigationItems = [
     label: "My Courses",
     icon: BookOpen,
     href: "/courses",
-    permissions: ["student"],
+    permissions: ["student", "teacher"],
+  },
+  {
+    id: "assignments",
+    label: "Assignments",
+    icon: FileText,
+    href: "/assignments",
+    permissions: ["student", "teacher"],
   },
   {
     id: "courses",
     label: "Courses",
     icon: BookOpen,
     href: "/courses",
-    permissions: ["admin", "lecturer"],
+    permissions: ["admin"],
   },
   {
     id: "assignments",
@@ -86,7 +94,7 @@ export const navigationItems = [
     label: "Announcements",
     icon: Megaphone,
     href: "/announcements",
-    permissions: ["lecturer", "admin", "student"],
+    permissions: ["teacher", "admin", "student"],
   },
 ];
 
@@ -96,13 +104,13 @@ export const bottomItems = [
     label: "Settings",
     icon: Settings,
     href: "/settings",
-    permissions: ["lecturer", "admin", "student"],
+    permissions: ["teacher", "admin", "student"],
   },
   {
     id: "logout",
     label: "Log Out",
     icon: LogOut,
     href: "/logout",
-    permissions: ["lecturer", "admin", "student"],
+    permissions: ["teacher", "admin", "student"],
   },
 ];

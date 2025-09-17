@@ -42,7 +42,9 @@ export function AppSidebar({ role }: { role?: Role }) {
           </div>
           <div className="text-white">
             <h1 className="text-lg font-bold">TenaClass</h1>
-            <p className="text-sm text-black font-medium">Admin Panel</p>
+            <p className="text-sm text-black font-medium capitalize">
+              {role} Panel
+            </p>
           </div>
         </div>
 

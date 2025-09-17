@@ -4,7 +4,7 @@ import { Bell } from "lucide-react";
 import { useEffect, useState } from "react";
 import { MetaData } from "../types";
 
-export default function HeaderBar() {
+export default function HeaderBar({ role }: { role?: string }) {
   const [user, setUser] = useState<MetaData | null>(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function HeaderBar() {
           <h1 className="text-black text-xl font-semibold">
             Dashboard Overview
           </h1>
-          <p className="text-sm">TenaClass Admin Panel</p>
+          <p className="text-sm capitalize">TenaClass {user?.role ?? role} Panel</p>
         </div>
         <div className="flex items-center justify-end w-full gap-4">
           <div className="border border-black bg-vivid-purple p-2.5 rounded-full">
@@ -40,7 +40,7 @@ export default function HeaderBar() {
                 {user?.first_name ?? ""}
               </p>
               <p className="text-xs font-medium capitalize">
-                {user?.role ?? ""}
+                {user?.role ?? role}
               </p>
             </div>
           </div>
