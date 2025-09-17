@@ -2,7 +2,11 @@
 
 import { SchoolOnboardingData } from "@/lib/schema";
 import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
-import { ApiResponse, LoginResponse } from "@workspace/common/types";
+import {
+  ApiResponse,
+  LoginResponse,
+  MetaData
+} from "@workspace/common/types";
 import { cookies } from "next/headers";
 
 export async function onboardSchoolAction(
@@ -36,6 +40,28 @@ export async function onboardSchoolAction(
         sameSite: "strict",
       }
     );
+  }
+
+  return [response, null];
+}
+
+
+
+export async function getTeachersAction(): Promise<
+  [ApiResponse<MetaData[]> | null, ApiResponse<never> | null]
+> {
+  const response = await fetchWrapper<ApiResponse<MetaData[]>>(
+    "/api/admin/school/teachers",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+    }
+  );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
   }
 
   return [response, null];
