@@ -1,6 +1,8 @@
 import { ArrowRight, Play } from "lucide-react";
 import Image from "next/image";
 import heroStudents from "../../assets/heroStudents.jpg";
+import { Button } from "@workspace/ui/components/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -41,18 +43,24 @@ export default function Hero() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start font-semibold">
-              <button className="bg-primary border-2 border-black group flex items-center justify-center gap-2 text-white p-4 rounded-lg ">
-                Start Your School's Digital Journey
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="bg-white rounded-lg hover:bg-primary hover:text-white text-primary border-2 border-primary group flex items-center justify-center gap-2 p-4 ">
+              <Link href="/sign-up">
+                <Button className="bg-primary border-2 border-black group flex items-center justify-center gap-2 text-white py-7 rounded-lg ">
+                  Start Your School's Digital Journey
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Button className="bg-white rounded-lg hover:bg-primary hover:text-white text-primary border-2 border-primary group flex items-center justify-center gap-2 py-7">
                 <Play className="w-5 h-5" />
                 Watch Demo
-              </button>
+              </Button>
             </div>
           </div>
           <div className="flex justify-end md:justify-center">
-            <Image src={heroStudents} alt="hero image" className="rounded-2xl border-2 border-black" />
+            <Image
+              src={heroStudents}
+              alt="hero image"
+              className="rounded-2xl border-2 border-black"
+            />
           </div>
         </div>
       </div>

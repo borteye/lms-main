@@ -3,6 +3,7 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@workspace/ui/components/button";
+import Link from "next/link";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +12,6 @@ export default function Navigation() {
     { name: "Features", href: "#features" },
     { name: "Why Choose Us", href: "#benefits" },
     { name: "Pricing", href: "#pricing" },
-    // { name: "Testimonials", href: "#testimonials" },
-    // { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -48,15 +47,19 @@ export default function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              Sign In
-            </Button>
-            <Button className="border border-black bg-primary text-base text-white px-6 py-6 rounded-lg font-semibold hover:shadow-glow transition-all duration-300">
-              Get Started
-            </Button>
+            <Link href="/sign-in">
+              <Button
+                variant="ghost"
+                className="text-foreground hover:bg-transparent hover:text-primary transition-colors font-medium"
+              >
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button className="border border-black bg-primary text-base text-white px-6 py-6 rounded-lg font-semibold hover:shadow-glow transition-all duration-300">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}

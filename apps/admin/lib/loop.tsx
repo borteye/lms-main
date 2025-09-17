@@ -1,4 +1,11 @@
-import { Building2, GraduationCap, Settings, Puzzle } from "lucide-react";
+import {
+  Building2,
+  GraduationCap,
+  Settings,
+  Puzzle,
+  School,
+  UserPlus,
+} from "lucide-react";
 
 export const steps = [
   {
@@ -32,5 +39,48 @@ export const steps = [
     icon: <Puzzle className="text-lg" />,
     bgColor: "bg-yellow-400",
     color: "text-yellow-400",
+  },
+];
+
+export const quickActions = [
+  {
+    id: 1,
+    title: "Add Department",
+    sub: "Create a new academic department",
+    button: "Create Department",
+    icon: <Building2 />,
+    color: "bg-primary",
+    card: "bg-vivid-purple/70",
+    link: "/department/new",
+  },
+  {
+    id: 2,
+    title: "Add Class/Stream",
+    sub: "Set up new class with streams",
+    button: "Create Class",
+    icon: <School />,
+    color: "bg-vivid-purple",
+    card: "bg-success/70",
+    link: "/department/new",
+  },
+  {
+    id: 3,
+    title: "Assign Subject Teacher",
+    sub: "Link teachers to subjects",
+    button: "Assign Teacher",
+    icon: <UserPlus />,
+    color: "bg-green-500",
+    card: "bg-teall",
+    link: "/department/new",
+  },
+  {
+    id: 4,
+    title: "Upload Lesson/Note",
+    sub: "Add learning materials",
+    button: "Upload Contents",
+    icon: <Building2 />,
+    color: "bg-yellow-400",
+    card: "bg-primary/70",
+    link: "/department/new",
   },
 ];

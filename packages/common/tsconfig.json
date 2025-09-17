@@ -7,6 +7,11 @@
       "@workspace/ui/*": ["../ui/src/*"]
     }
   },
-  "include": ["."],
+  "include": [
+    ".",
+    "../../apps/admin/components/user-management/bulk-teachers-upload.tsx",
+    "../../apps/admin/components/course/course-card.tsx",
+    "../../apps/admin/components/classroom/classroom-card.tsx"
+  ],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,6 @@
 "use server";
 
-import { SignUpData } from "@workspace/common/lib/auth";
+import { SignUpData } from "@workspace/common/lib/auth-schema";
 import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
 import { ApiResponse } from "@workspace/common/types";
 
@@ -21,3 +21,4 @@ export async function signUpAction(
 
   return [response, null];
 }
+

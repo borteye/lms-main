@@ -100,4 +100,53 @@ export const schoolOnboarding = z
   .partial();
 
 export type SchoolOnboardingData = z.infer<typeof schoolOnboarding> & {
-  schoolId?: string;};
+  schoolId?: string;
+};
+
+export const createDepartmentSchema = z.object({
+  name: z.string().min(1, "Department name is required"),
+  departmentCode: z.string().min(1, "Department code is required"),
+  headOfDepartment: z.string().optional(),
+});
+export type CreateDepartmentData = z.infer<typeof createDepartmentSchema>;
+
+export const createClassSchema = z.object({
+  name: z.string().min(1, "Department name is required"),
+  department: z.string().min(1, "Department is required"),
+  level: z.string().min(1, "Level is required"),
+  classTeacher: z.string().optional(),
+});
+export type CreateClassData = z.infer<typeof createClassSchema>;
+
+export const createTeacherSchema = z.object({
+  first_name: z.string().min(1, "First name is required"),
+  last_name: z.string().min(1, "First name is required"),
+  phoneNumber: z
+    .string()
+    .min(1, "Phone number is required")
+    .min(10, "Please enter a valid phone number"),
+  contactEmail: z
+    .string()
+    .min(1, "Contact email is required")
+    .email("Please enter a valid email address"),
+  department: z.string().optional(),
+  qualifications: z.array(z.string()).optional(),
+});
+export type CreateTeacherData = z.infer<typeof createTeacherSchema>;
+
+export const createStudentSchema = z.object({
+  first_name: z.string().min(1, "First name is required"),
+  last_name: z.string().min(1, "First name is required"),
+  phoneNumber: z
+    .string()
+    .min(1, "Phone number is required")
+    .min(10, "Please enter a valid phone number"),
+  contactEmail: z
+    .string()
+    .min(1, "Contact email is required")
+    .email("Please enter a valid email address"),
+  class: z.string().optional(),
+  level: z.string().optional(),
+  stream: z.string().optional(),
+});
+export type CreateStudentData = z.infer<typeof createStudentSchema>;

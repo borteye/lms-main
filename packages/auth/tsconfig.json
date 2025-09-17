@@ -1,9 +1,11 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@workspace/auth/*": ["./src/*"]
+      "@workspace/auth/*": ["./src/*"],
+      "@workspace/common/*": ["../common/src/*"],
+      "@workspace/ui/*": ["../ui/src/*"]
     }
   },
   "include": ["."],

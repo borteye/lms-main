@@ -1,5 +1,5 @@
 import { signUpAction } from "@/action/auth";
-import { SignUpData, signUpSchema } from "@workspace/common/lib/auth";
+import { SignUpData, signUpSchema } from "@workspace/common/lib/auth-schema";
 import { useReactHookForm, zodResolver } from "@workspace/ui/lib/client";
 import { toast } from "@workspace/ui/lib/server";
 import { useState } from "react";
