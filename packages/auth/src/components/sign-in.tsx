@@ -15,7 +15,7 @@ import LoaderButton from "@workspace/ui/components/loading-button";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 
-export default function SignIn() {
+export default function SignIn({ admin }: { admin?: boolean }) {
   const { register, formState, form, onSubmit, showPassword, setShowPassword } =
     useSignIn();
 
@@ -100,17 +100,19 @@ export default function SignIn() {
               </LoaderButton>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-foreground-secondary">
-                Don't have an account?{" "}
-                <Link
-                  href="/sign-up"
-                  className="text-primary hover:underline font-medium"
-                >
-                  Sign up here
-                </Link>
-              </p>
-            </div>
+            {admin && (
+              <div className="mt-6 text-center">
+                <p className="text-sm text-foreground-secondary">
+                  Don't have an account?{" "}
+                  <Link
+                    href="/sign-up"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Sign up here
+                  </Link>
+                </p>
+              </div>
+            )}
 
             <div className="mt-4 text-center">
               <p className="text-xs text-muted-foreground">

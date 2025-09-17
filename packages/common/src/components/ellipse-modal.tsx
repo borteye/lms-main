@@ -13,7 +13,7 @@ import React from "react";
 interface Props {
   link?: string;
   children1: React.ReactNode;
-  children2: React.ReactNode;
+  children2?: React.ReactNode;
 }
 
 export default function EllipseModal({ link, children1, children2 }: Props) {
@@ -39,9 +39,11 @@ export default function EllipseModal({ link, children1, children2 }: Props) {
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           {children1}
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          {children2}
-        </DropdownMenuItem>
+        {children2 && (
+          <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+            {children2}
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

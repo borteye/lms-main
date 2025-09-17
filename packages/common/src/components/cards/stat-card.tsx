@@ -8,6 +8,8 @@ import {
   FolderOpen,
   Building2,
   TrendingUp,
+  ClipboardList,
+  Trophy,
 } from "lucide-react";
 
 const colors: Record<
@@ -50,6 +52,18 @@ const colors: Record<
     icon_bg: "bg-yellow-400",
     text: "text-yellow-400",
   },
+  pending_grading: {
+    bg: "bg-vivid-purple/80",
+    hover_bg: "hover:bg-vivid-purple",
+    icon_bg: "bg-yellow-400",
+    text: "text-yellow-400",
+  },
+  average_grade: {
+    bg: "bg-success/80",
+    hover_bg: "hover:bg-success",
+    icon_bg: "bg-vivid-purple",
+    text: "text-vivid-purple",
+  },
 };
 
 const icons: Record<string, React.ElementType> = {
@@ -59,6 +73,8 @@ const icons: Record<string, React.ElementType> = {
   classes: Layers,
   subjects: BookOpen,
   average_class_size: TrendingUp,
+  pending_grading: ClipboardList,
+  average_grade: Trophy,
 };
 
 export default function StatisticsCard({ data }: { data?: SchoolStats }) {

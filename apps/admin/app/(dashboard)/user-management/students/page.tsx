@@ -1,7 +1,5 @@
 "use client";
 
-import AddTeacher from "@/components/user-management/add-teacher";
-import BulkTeachersUpload from "@/components/user-management/bulk-teachers-upload";
 import StatisticsCard from "@workspace/common/components/cards/stat-card";
 import { Input } from "@workspace/ui/components/input";
 import {
@@ -18,26 +16,13 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@workspace/ui/components/dropdown-menu";
-import {
-  Clock,
-  EllipsisVertical,
-  Eye,
-  Filter,
-  GraduationCap,
-  LayoutGrid,
+  Clock, Filter, LayoutGrid,
   Search,
   Table,
-  User,
+  User
 } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
-import EditTeacherModal from "@/components/user-management/edit-teacher-modal";
-import DeleteModal from "@/components/user-management/delete-modal";
-import Link from "next/link";
+import DeleteModal from "@workspace/common/components/delete-modal";
 import EllipseModal from "@workspace/common/components/ellipse-modal";
 import AddStudent from "@/components/user-management/add-student";
 import BulkStudentsUpload from "@/components/user-management/bulk-students-upload";

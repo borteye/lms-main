@@ -1,9 +1,6 @@
-import EllipseModal from "@workspace/common/components/ellipse-modal";
 import { Users } from "lucide-react";
-import DeleteModal from "@workspace/common/components/delete-modal";
-import EditAnnouncement from "./edit-announcement";
 
-export default function AnnouncementCard() {
+export default function RecentAnnouncementCard() {
   return (
     <div className="border-2 border-black p-4 flex flex-col gap-5 rounded-lg bg-success/50">
       <div className="flex items-center justify-between gap-4">
@@ -13,10 +10,6 @@ export default function AnnouncementCard() {
             <Users size={16} /> Everyone
           </div>
         </div>
-        <EllipseModal
-          children1={<EditAnnouncement />}
-          children2={<DeleteModal subject="announcement" />}
-        />
       </div>
 
       <div className="flex flex-col gap-2">

@@ -16,15 +16,16 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import {
-  Clock, Filter,
+  Clock,
+  Filter,
   GraduationCap,
   LayoutGrid,
   Search,
-  Table
+  Table,
 } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import EditTeacherModal from "@/components/user-management/edit-teacher-modal";
-import DeleteModal from "@/components/user-management/delete-modal";
+import DeleteModal from "@workspace/common/components/delete-modal";
 import EllipseModal from "@workspace/common/components/ellipse-modal";
 
 export default function TeachersPage() {

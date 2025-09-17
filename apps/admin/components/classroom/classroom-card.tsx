@@ -1,9 +1,7 @@
-import {
-  School
-} from "lucide-react";
+import { School } from "lucide-react";
 import EllipseModal from "../../../../packages/common/src/components/ellipse-modal";
 import EditClassroom from "./edit-classroom";
-import DeleteModal from "../user-management/delete-modal";
+import DeleteModal from "@workspace/common/components/delete-modal";
 
 interface ClassroomCardProps {
   children?: React.ReactNode;

@@ -1,9 +1,7 @@
-import {
-  Clock, NotebookText
-} from "lucide-react";
-import EllipseModal from "../../../../packages/common/src/components/ellipse-modal";
-import DeleteModal from "../user-management/delete-modal";
+import { Clock, NotebookText } from "lucide-react";
+import DeleteModal from "@workspace/common/components/delete-modal";
 import EditSubject from "./edit-subject";
+import EllipseModal from "@workspace/common/components/ellipse-modal";
 
 export default function SubjectCard() {
   return (
@@ -20,7 +18,6 @@ export default function SubjectCard() {
           children2={<DeleteModal subject="subject" />}
         />
       </div>
-  
 
       <div className="w-full h-0.5 bg-black" />
       <p className="flex items-center gap-1">
