@@ -20,7 +20,7 @@ import {
 } from "@workspace/ui/components/select";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
-import { BookCopy, Eye, Plus } from "lucide-react";
+import { BookCopy, Eye, Plus, SquarePen } from "lucide-react";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import { useState } from "react";
 
@@ -29,7 +29,7 @@ export default function EditCourseMaterial() {
   return (
     <Dialog>
       <DialogTrigger className="flex items-center gap-2">
-        <Eye />
+        <SquarePen />
         Edit Materials
       </DialogTrigger>
       <DialogContent>
