@@ -35,7 +35,7 @@ export default function DashboardPage() {
             <div className="border border-black p-2 bg-vivid-purple rounded-md w-fit text-white">
               <BookOpen />
             </div>
-            <h1 className="text-xl font-semibold">Upcoming Deadlines</h1>
+            <h1 className="text-xl font-semibold">My Courses</h1>
           </div>
           <div className="flex flex-col gap-3">
             <div className="border border-black rounded-md p-4 flex flex-col gap-2 w-full">
