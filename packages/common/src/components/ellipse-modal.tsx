@@ -14,9 +14,15 @@ interface Props {
   link?: string;
   children1: React.ReactNode;
   children2?: React.ReactNode;
+  children3?: React.ReactNode;
 }
 
-export default function EllipseModal({ link, children1, children2 }: Props) {
+export default function EllipseModal({
+  link,
+  children1,
+  children2,
+  children3,
+}: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -36,12 +42,19 @@ export default function EllipseModal({ link, children1, children2 }: Props) {
           </DropdownMenuItem>
         )}
 
-        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          {children1}
-        </DropdownMenuItem>
+        {children1 && (
+          <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+            {children1}
+          </DropdownMenuItem>
+        )}
         {children2 && (
           <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
             {children2}
+          </DropdownMenuItem>
+        )}
+        {children3 && (
+          <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+            {children3}
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>

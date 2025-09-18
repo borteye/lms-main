@@ -2,6 +2,7 @@ import { BookOpen, Clock, Users } from "lucide-react";
 import EllipseModal from "../../../../packages/common/src/components/ellipse-modal";
 import EditCourse from "./edit-course";
 import DeleteModal from "@workspace/common/components/delete-modal";
+import CourseMaterialModal from "./course-material-modal";
 
 export default function CourseCard() {
   return (
@@ -14,8 +15,9 @@ export default function CourseCard() {
           <h2 className="font-medium text-lg">General Knowledge in Art</h2>
         </div>
         <EllipseModal
-          children1={<EditCourse />}
-          children2={<DeleteModal subject="course" />}
+          children1={<CourseMaterialModal />}
+          children2={<EditCourse />}
+          children3={<DeleteModal subject="course" />}
         />
       </div>
       <div className="flex flex-col gap-4">

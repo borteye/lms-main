@@ -20,17 +20,19 @@ import {
 } from "@workspace/ui/components/select";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
-import { BookCopy, Eye, Plus, SquarePen } from "lucide-react";
+import { BookCopy, Plus } from "lucide-react";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import { useState } from "react";
 
-export default function EditCourseMaterial() {
+export default function AddCourseMaterial() {
   const [type, setType] = useState("");
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center gap-2">
-        <SquarePen />
-        Edit Materials
+      <DialogTrigger asChild>
+        <Button>
+          <Plus />
+          Add Materials
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -38,7 +40,7 @@ export default function EditCourseMaterial() {
             <div className="bg-yellow-400 p-2 rounded-md border border-black w-fit text-white">
               <BookCopy />
             </div>
-            Edit Material
+            Add New Material
           </DialogTitle>
 
           <DialogDescription />
@@ -112,7 +114,7 @@ export default function EditCourseMaterial() {
               </Button>
             </DialogClose>
             <LoaderButton loading={false} type="submit">
-              Update Material
+              Add Material
             </LoaderButton>
           </DialogFooter>
         </form>
