@@ -1,9 +1,10 @@
 import { Button } from "@workspace/ui/components/button";
 import {
-    Dialog,
-    DialogContent, DialogHeader,
-    DialogTitle,
-    DialogTrigger
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@workspace/ui/components/dialog";
 import { Download, Eye, File } from "lucide-react";
 import AddCourseMaterial from "./add-course-material";
@@ -39,7 +40,9 @@ export default function CourseMaterialModal() {
                   <File size={20} />
                   <div>
                     <div className="flex items-center gap-2">
-                      <h1>Chapter 1: Introduction to Algebra</h1>
+                      <h1 className="font-medium">
+                        Chapter 1: Introduction to Algebra
+                      </h1>
                       <p className="bg-yellow-200 w-fit text-xs border border-black px-2 rounded-full font-semibold">
                         file
                       </p>

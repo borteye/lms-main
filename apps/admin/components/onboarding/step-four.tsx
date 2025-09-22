@@ -141,9 +141,10 @@ export default function StepFour({
               </h5>
               <ul className="text-sm text-white space-y-1">
                 <li>
-                  • Required columns: First Name, Last Name, Email, Student ID
+                  • Required columns: firstname, lastname, contactemail,
+                  contactphonenumber
                 </li>
-                <li>• Optional columns: Grade Level, Class, Phone, Address</li>
+                {/* <li>• Optional columns: Grade Level, Class, Phone, Address</li> */}
                 <li>• First row should contain column headers</li>
                 <li>• Maximum 1,000 students per file</li>
               </ul>

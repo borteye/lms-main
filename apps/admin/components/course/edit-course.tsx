@@ -13,13 +13,12 @@ import {
 } from "@workspace/ui/components/dialog";
 import {
   Select,
-  SelectContent, SelectTrigger,
-  SelectValue
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
 } from "@workspace/ui/components/select";
 import { Label } from "@workspace/ui/components/label";
-import {
-  BookOpen, SquarePen
-} from "lucide-react";
+import { BookOpen, SquarePen } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import useAddStudent from "@/hooks/use-add-student";
@@ -62,8 +61,8 @@ export default function EditCourse() {
                 </Label>
                 {/* <div className="flex w-full flex-1 border border-red-500"> */}
                 <Select
-                  value={watch("class")}
-                  onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
                 >
                   <SelectTrigger className={cn("mt-1 w-full")}>
                     <SelectValue
@@ -85,11 +84,11 @@ export default function EditCourse() {
                 </Select>
                 {/* </div> */}
 
-                {formState.errors.class && (
+                {/* {formState.errors.class && (
                   <p className="text-destructive text-sm mt-1">
                     {formState.errors.class.message}
                   </p>
-                )}
+                )} */}
               </div>
               <div className="w-full">
                 <Label
@@ -99,8 +98,8 @@ export default function EditCourse() {
                   Scope <span className="text-destructive">*</span>
                 </Label>
                 <Select
-                  value={watch("class")}
-                  onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
                 >
                   <SelectTrigger className={cn("mt-1 w-full")}>
                     <SelectValue
@@ -120,11 +119,11 @@ export default function EditCourse() {
                           ))} */}
                   </SelectContent>
                 </Select>
-                {formState.errors.class && (
+                {/* {formState.errors.class && (
                   <p className="text-destructive text-sm mt-1">
                     {formState.errors.class.message}
                   </p>
-                )}
+                )} */}
               </div>
             </div>
             <div className="w-full flex justify-between gap-4">
@@ -137,8 +136,8 @@ export default function EditCourse() {
                 </Label>
                 {/* <div className="flex w-full flex-1 border border-red-500"> */}
                 <Select
-                  value={watch("class")}
-                  onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
                 >
                   <SelectTrigger className={cn("mt-1 w-full")}>
                     <SelectValue
@@ -160,11 +159,11 @@ export default function EditCourse() {
                 </Select>
                 {/* </div> */}
 
-                {formState.errors.class && (
+                {/* {formState.errors.class && (
                   <p className="text-destructive text-sm mt-1">
                     {formState.errors.class.message}
                   </p>
-                )}
+                )} */}
               </div>
               <div className="w-full">
                 <Label
@@ -174,8 +173,8 @@ export default function EditCourse() {
                   Stream <span className="text-gray-400">(Optional)</span>
                 </Label>
                 <Select
-                  value={watch("class")}
-                  onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
                 >
                   <SelectTrigger className={cn("mt-1 w-full")}>
                     <SelectValue
@@ -195,11 +194,11 @@ export default function EditCourse() {
                           ))} */}
                   </SelectContent>
                 </Select>
-                {formState.errors.class && (
+                {/* {formState.errors.class && (
                   <p className="text-destructive text-sm mt-1">
                     {formState.errors.class.message}
                   </p>
-                )}
+                )} */}
               </div>
             </div>
 

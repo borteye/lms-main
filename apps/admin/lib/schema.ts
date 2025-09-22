@@ -145,8 +145,29 @@ export const createStudentSchema = z.object({
     .string()
     .min(1, "Contact email is required")
     .email("Please enter a valid email address"),
-  class: z.string().optional(),
-  level: z.string().optional(),
+  class_id: z.string().optional(),
   stream: z.string().optional(),
 });
 export type CreateStudentData = z.infer<typeof createStudentSchema>;
+
+export const createSubjectSchema = z.object({
+  subjects: z.array(z.string()).min(1, "At least one subject is required"),
+});
+export type CreateSubjectData = z.infer<typeof createSubjectSchema>;
+
+export const classAssignedSubjectTeacher = z.object({
+  class: z.string().min(1, "Class is required"),
+  teacher: z.string().optional(),
+});
+
+export const createCourseSchema = z.object({
+  scope: z.string().min(1, "Scope is required"),
+  subject: z.string().min(1, "Subject is required"),
+  class: z.string().optional(),
+  stream: z.string().optional(),
+  teacher: z.string().optional(),
+  class_assigned_subject_teacher: z
+    .array(classAssignedSubjectTeacher)
+    .optional(),
+});
+export type CreateCourseData = z.infer<typeof createCourseSchema>;

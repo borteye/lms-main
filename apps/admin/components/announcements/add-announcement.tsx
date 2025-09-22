@@ -101,8 +101,8 @@ export default function AddAnnouncement() {
                 Department <span className="text-gray-400">(Optional)</span>
               </Label>
               <Select
-                value={watch("class")}
-                onValueChange={(value) => setValue("class", value)}
+              // value={watch("class")}
+              // onValueChange={(value) => setValue("class", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
@@ -131,8 +131,8 @@ export default function AddAnnouncement() {
                 Recipients <span className="text-destructive">*</span>
               </Label>
               <Select
-                value={watch("class")}
-                onValueChange={(value) => setValue("class", value)}
+              // value={watch("class")}
+              // onValueChange={(value) => setValue("class", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue

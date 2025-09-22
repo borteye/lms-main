@@ -13,8 +13,10 @@ import {
 } from "@workspace/ui/components/dialog";
 import {
   Select,
-  SelectContent, SelectTrigger,
-  SelectValue
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@workspace/ui/components/select";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
@@ -24,8 +26,22 @@ import { colors } from "@workspace/common/lib/utils";
 import useAddTeacher from "@/hooks/use-add-teacher";
 import { Badge } from "@workspace/ui/components/badge";
 import LoaderButton from "@workspace/ui/components/loading-button";
+import { useSWR } from "@workspace/common/lib/client";
+import { getDepartmentsNameIdAction } from "@/action/department";
 
 export default function AddTeacher() {
+  const { data: departmentNameId, isLoading } = useSWR(
+    "/api/departments",
+    async () => {
+      const [response, error] = await getDepartmentsNameIdAction();
+      if (error) {
+        console.error("Error fetching departments:", error);
+        return;
+      }
+      return response?.data;
+    }
+  );
+
   const {
     addQualification,
     removeQualification,
@@ -33,13 +49,13 @@ export default function AddTeacher() {
     setQualifications,
     formState,
     register,
-    getValues,
     handleSubmit,
     reset,
     setValue,
     watch,
     onSubmit,
   } = useAddTeacher();
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -154,19 +170,16 @@ export default function AddTeacher() {
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
                     placeholder={
-                      "hi"
-                      //   classroomLevelsLoading
-                      //     ? "Fetching classroom levels"
-                      //     : "Select class level"
+                      isLoading ? "Fetching departments" : "Select department"
                     }
                   />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* {classroomLevels?.map((level, i) => (
-                            <SelectItem value={String(level?.id)} key={i}>
-                              {level?.name}
-                            </SelectItem>
-                          ))} */}
+                  {departmentNameId?.map((dep, i) => (
+                    <SelectItem value={String(dep?.id)} key={i}>
+                      {dep?.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               {formState.errors.department && (

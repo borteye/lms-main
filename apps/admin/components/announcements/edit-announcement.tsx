@@ -99,8 +99,8 @@ export default function EditAnnouncement() {
                 Recipients <span className="text-destructive">*</span>
               </Label>
               <Select
-                value={watch("class")}
-                onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue

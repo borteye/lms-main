@@ -1,9 +1,11 @@
+import { createStudentAction } from "@/action/school";
 import {
   CreateStudentData,
   createStudentSchema,
   CreateTeacherData,
 } from "@/lib/schema";
 import { useReactHookForm, zodResolver } from "@workspace/ui/lib/client";
+import { toast } from "@workspace/ui/lib/server";
 
 export default function useAddStudent() {
   const defaultValues = {
@@ -11,8 +13,7 @@ export default function useAddStudent() {
     last_name: "",
     phoneNumber: "",
     contactEmail: "",
-    class: "",
-    level: "",
+    class_id: "",
     stream: "",
   };
 
@@ -30,7 +31,18 @@ export default function useAddStudent() {
   });
 
   const onSubmit = async (values: CreateTeacherData) => {
-    console.log("values", values);
+    const [response, error] = await createStudentAction(values);
+    if (error) {
+      const errorMessage =
+        error.message ||
+        error.errors?.[0]?.errorMessage ||
+        "Creating student failed. Please try again.";
+      toast.error(errorMessage);
+    } else if (response) {
+      reset();
+      toast.success(response.message);
+      window.location.reload();
+    }
   };
 
   return {
