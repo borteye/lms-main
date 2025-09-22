@@ -25,9 +25,24 @@ import { cn } from "@workspace/ui/lib/utils";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import useAddStudent from "@/hooks/use-add-student";
 import { useSWR } from "@workspace/common/lib/client";
-import { getClassroomLevelsAction } from "@workspace/common/actions/common";
+import {
+  getClassesAction,
+  getClassroomLevelsAction,
+} from "@workspace/common/actions/common";
 
 export default function AddStudent() {
+  const { data: classes, isLoading: isClassesLoading } = useSWR(
+    "/api/classes",
+    async () => {
+      const [response, error] = await getClassesAction();
+      if (error) {
+        console.error("Error fetching classes:", error);
+        return;
+      }
+      return response?.data;
+    }
+  );
+
   const {
     formState,
     register,
@@ -142,7 +157,7 @@ export default function AddStudent() {
                 htmlFor="class"
                 className="text-sm font-medium text-gray-700"
               >
-                Class <span className="text-gray-400">(Optional)</span>
+                Class <span className="text-destructive">*</span>
               </Label>
               <Select
                 value={watch("class_id")}
@@ -151,19 +166,21 @@ export default function AddStudent() {
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
                     placeholder={
-                      // levelsLoading
-                      //   ? "Fetching class levels"
-                      //   :
-                      "Select class "
+                      isClassesLoading ? "Fetching classes" : "Select class "
                     }
                   />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* {levels?.map((level) => (
-                    <SelectItem value={String(level?.id)} key={level?.id}>
-                      {level?.name}
-                    </SelectItem>
-                  ))} */}
+                  {classes
+                    ?.filter((cls) => cls?.type === "class")
+                    ?.map((cls) => (
+                      <SelectItem
+                        value={String(cls?.class_id)}
+                        key={cls?.class_id}
+                      >
+                        {`${cls?.class_name} - ${cls?.class_level_name}`}
+                      </SelectItem>
+                    ))}
                 </SelectContent>
               </Select>
               {formState.errors.class_id && (
@@ -187,20 +204,34 @@ export default function AddStudent() {
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
                     placeholder={
-                      "Select stream"
-                      //   classroomLevelsLoading
-                      //     ? "Fetching classroom levels"
-                      //     : "Select class level"
+                      isClassesLoading ? "Fetching streams" : "Select stream "
                     }
                   />
                 </SelectTrigger>
                 <SelectContent>
-                  No Stream available for this class
-                  {/* {classroomLevels?.map((level, i) => (
-                            <SelectItem value={String(level?.id)} key={i}>
-                              {level?.name}
-                            </SelectItem>
-                          ))} */}
+                  {(() => {
+                    const filteredStreams =
+                      classes?.filter(
+                        (cls) =>
+                          cls?.type === "stream" &&
+                          cls?.class_id === Number(watch("class_id"))
+                      ) || [];
+
+                    return filteredStreams.length > 0 ? (
+                      filteredStreams.map((stream) => (
+                        <SelectItem
+                          value={String(stream?.stream_id)}
+                          key={stream?.stream_id}
+                        >
+                          {stream?.stream_name ?? `Stream ${stream?.stream_id}`}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <div className="px-3 py-2 text-sm text-gray-500">
+                        No streams available
+                      </div>
+                    );
+                  })()}
                 </SelectContent>
               </Select>
               {formState.errors.stream && (
