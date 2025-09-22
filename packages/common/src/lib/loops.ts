@@ -76,13 +76,6 @@ export const navigationItems = [
     permissions: ["admin"],
   },
   {
-    id: "assignments",
-    label: "Assignments",
-    icon: FileText,
-    href: "/assignments",
-    permissions: ["student"],
-  },
-  {
     id: "grades",
     label: "Grades",
     icon: GraduationCap,
@@ -112,5 +105,20 @@ export const bottomItems = [
     icon: LogOut,
     href: "/logout",
     permissions: ["teacher", "admin", "student"],
+  },
+];
+
+export const Scopes = [
+  {
+    label: "SCHOOL",
+    value: "school",
+  },
+  {
+    label: "CLASS",
+    value: "class",
+  },
+  {
+    label: "STREAM",
+    value: "stream",
   },
 ];
