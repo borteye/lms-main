@@ -179,7 +179,7 @@ export default function Onboarding() {
             </div>
 
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">Tenasi</h1>
+              <h1 className="text-xl font-bold text-foreground">TenaClass</h1>
               <p className="text-xs text-foreground-secondary -mt-1">
                 Knowledge for Every Seat
               </p>
@@ -198,7 +198,7 @@ export default function Onboarding() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-bold text-gray-900">
-              Welcome to <span className="text-primary">TENASI</span>
+              Welcome to <span className="text-primary">TenaClass</span>
             </h1>
             <span className="text-sm text-gray-600">
               Step {currentStep} of {steps.length}

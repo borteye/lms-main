@@ -70,7 +70,7 @@ export default function Benefits() {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-poppins">
               Why Schools Across Ghana
               <span className="block text-transparent bg-gradient-to-r from-primary to-primary/10 bg-clip-text">
-                Choose Tenasi
+                Choose TenaClass
               </span>
             </h2>
             <p className="text-xl text-foreground-secondary font-inter">
