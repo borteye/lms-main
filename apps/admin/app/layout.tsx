@@ -1,30 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { montserrat } from "@workspace/common/lib/server";
 
-import "@workspace/ui/globals.css"
-import { Providers } from "@/components/providers"
-
-const fontSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+import "@workspace/ui/globals.css";
+import { Providers } from "@workspace/common/components/providers";
+import { LocalStorageCleaner } from "@workspace/common/components/local-storage-cleaner";
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
-      >
+      <body className={`${montserrat.className}  font-sans antialiased `}>
+        <LocalStorageCleaner />
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
