@@ -38,24 +38,20 @@ export default function DashboardPage() {
             <h1 className="text-xl font-semibold">My Courses</h1>
           </div>
           <div className="flex flex-col gap-3">
-            <div className="border border-black rounded-md p-4 flex flex-col gap-2 w-full">
-              <h1 className="font-medium text-lg">SHS 2 Science A</h1>
-              <p className="text-base">30 students</p>
-              <Progress value={50} />
-              <p className="text-sm">50% complete</p>
-            </div>
-            <div className="border border-black rounded-md p-4 flex flex-col gap-2 w-full">
-              <h1 className="font-medium text-lg">SHS 2 Science A</h1>
-              <p className="text-base">30 students</p>
-              <Progress value={50} />
-              <p className="text-sm">50% complete</p>
-            </div>
-            <div className="border border-black rounded-md p-4 flex flex-col gap-2 w-full">
-              <h1 className="font-medium text-lg">SHS 2 Science A</h1>
-              <p className="text-base">30 students</p>
-              <Progress value={50} />
-              <p className="text-sm">50% complete</p>
-            </div>
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="border border-black rounded-md p-4 flex flex-col gap-2 w-full"
+              >
+                <div>
+                  <h1 className="font-medium text-lg">Physics</h1>
+                  <h1 className="font-medium text-base">SHS 2 Science A</h1>
+                </div>
+                <p className="text-base">30 students</p>
+                <Progress value={50} />
+                <p className="text-sm">50% complete</p>
+              </div>
+            ))}
           </div>
           <Button className="bg-vivid-purple">View All Course</Button>
         </div>
