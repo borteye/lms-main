@@ -38,5 +38,16 @@ export interface NamedEntity {
 
 export type ClassroomLevels = NamedEntity;
 export type Department = NamedEntity;
+export type Subject = NamedEntity;
 
 export type Role = "admin" | "student" | "teacher";
+
+export interface Classes {
+  class_id: number;
+  class_name: string;
+  stream_id: number | null;
+  stream_name: string | null;
+  type: string;
+  class_level_id: number;
+  class_level_name: string;
+}
