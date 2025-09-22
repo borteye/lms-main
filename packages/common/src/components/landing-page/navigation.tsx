@@ -25,7 +25,7 @@ export default function Navigation() {
             </div>
 
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-foreground">Tenasi</h1>
+              <h1 className="text-xl font-bold text-foreground">TenaClass</h1>
               <p className="text-xs text-foreground-secondary -mt-1">
                 Knowledge for Every Seat
               </p>
