@@ -13,8 +13,10 @@ import {
 } from "@workspace/ui/components/dialog";
 import {
   Select,
-  SelectContent, SelectTrigger,
-  SelectValue
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@workspace/ui/components/select";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
@@ -22,6 +24,8 @@ import { Plus, User } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import useAddStudent from "@/hooks/use-add-student";
+import { useSWR } from "@workspace/common/lib/client";
+import { getClassroomLevelsAction } from "@workspace/common/actions/common";
 
 export default function AddStudent() {
   const {
@@ -141,68 +145,34 @@ export default function AddStudent() {
                 Class <span className="text-gray-400">(Optional)</span>
               </Label>
               <Select
-                value={watch("class")}
-                onValueChange={(value) => setValue("class", value)}
+                value={watch("class_id")}
+                onValueChange={(value) => setValue("class_id", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
                     placeholder={
-                      "hi"
-                      //   classroomLevelsLoading
-                      //     ? "Fetching classroom levels"
-                      //     : "Select class level"
+                      // levelsLoading
+                      //   ? "Fetching class levels"
+                      //   :
+                      "Select class "
                     }
                   />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* {classroomLevels?.map((level, i) => (
-                            <SelectItem value={String(level?.id)} key={i}>
-                              {level?.name}
-                            </SelectItem>
-                          ))} */}
+                  {/* {levels?.map((level) => (
+                    <SelectItem value={String(level?.id)} key={level?.id}>
+                      {level?.name}
+                    </SelectItem>
+                  ))} */}
                 </SelectContent>
               </Select>
-              {formState.errors.class && (
+              {formState.errors.class_id && (
                 <p className="text-destructive text-sm mt-1">
-                  {formState.errors.class.message}
+                  {formState.errors.class_id.message}
                 </p>
               )}
             </div>
-            <div>
-              <Label
-                htmlFor="level"
-                className="text-sm font-medium text-gray-700"
-              >
-                Class Level <span className="text-gray-400">(Optional)</span>
-              </Label>
-              <Select
-                value={watch("level")}
-                onValueChange={(value) => setValue("level", value)}
-              >
-                <SelectTrigger className={cn("mt-1 w-full")}>
-                  <SelectValue
-                    placeholder={
-                      "hi"
-                      //   classroomLevelsLoading
-                      //     ? "Fetching classroom levels"
-                      //     : "Select class level"
-                    }
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  {/* {classroomLevels?.map((level, i) => (
-                            <SelectItem value={String(level?.id)} key={i}>
-                              {level?.name}
-                            </SelectItem>
-                          ))} */}
-                </SelectContent>
-              </Select>
-              {formState.errors.level && (
-                <p className="text-destructive text-sm mt-1">
-                  {formState.errors.level.message}
-                </p>
-              )}
-            </div>
+
             <div>
               <Label
                 htmlFor="stream"
@@ -217,7 +187,7 @@ export default function AddStudent() {
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
                     placeholder={
-                      "hi"
+                      "Select stream"
                       //   classroomLevelsLoading
                       //     ? "Fetching classroom levels"
                       //     : "Select class level"
@@ -225,6 +195,7 @@ export default function AddStudent() {
                   />
                 </SelectTrigger>
                 <SelectContent>
+                  No Stream available for this class
                   {/* {classroomLevels?.map((level, i) => (
                             <SelectItem value={String(level?.id)} key={i}>
                               {level?.name}

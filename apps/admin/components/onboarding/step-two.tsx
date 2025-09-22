@@ -152,7 +152,7 @@ export default function StepTwo({
           <div className="space-y-2">
             <div className="flex gap-2">
               <Input
-                placeholder="Enter department name (e.g., Science, General Art, JHS 1, JHS 3, Grade 5)"
+                placeholder="Enter department name (e.g., Science, General Art, Primary, JHS)"
                 value={newDepartment}
                 onChange={(e) => setNewDepartment(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addDepartment()}

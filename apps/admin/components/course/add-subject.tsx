@@ -19,22 +19,20 @@ import { colors } from "@workspace/common/lib/utils";
 import useAddTeacher from "@/hooks/use-add-teacher";
 import { Badge } from "@workspace/ui/components/badge";
 import LoaderButton from "@workspace/ui/components/loading-button";
+import {useAddSubject} from "@/hooks/use-courses";
 
 export default function AddTeacher() {
   const {
-    addQualification,
-    removeQualification,
-    qualifications,
-    setQualifications,
-    formState,
-    register,
-    getValues,
-    handleSubmit,
-    reset,
-    setValue,
     watch,
+    formState,
+    handleSubmit,
     onSubmit,
-  } = useAddTeacher();
+    newSubject,
+    setNewSubject,
+    addSubject,
+    removeSubject,
+    reset,
+  } = useAddSubject();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -63,21 +61,17 @@ export default function AddTeacher() {
                 <div className="flex gap-2">
                   <Input
                     placeholder="Enter subject name (e.g., Science, Maths)"
-                    value={qualifications}
-                    onChange={(e) => setQualifications(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && addQualification()}
+                    value={newSubject}
+                    onChange={(e) => setNewSubject(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && addSubject()}
                   />
-                  <Button
-                    type="button"
-                    onClick={addQualification}
-                    variant="outline"
-                  >
+                  <Button type="button" onClick={addSubject} variant="outline">
                     Add
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <div className="flex flex-wrap gap-2">
-                    {watch("qualifications")?.map((dept, index) => {
+                    {watch("subjects")?.map((dept, index) => {
                       const bg = colors[index % colors.length];
                       return (
                         <Badge
@@ -92,7 +86,7 @@ export default function AddTeacher() {
                           <Button
                             variant="ghost"
                             className="p-0 hover:bg-destructive hover:text-white"
-                            onClick={() => removeQualification(index)}
+                            onClick={() => removeSubject(index)}
                           >
                             <X className="w-4 h-4" />
                           </Button>
@@ -102,9 +96,9 @@ export default function AddTeacher() {
                   </div>
                 </div>
               </div>
-              {formState.errors.qualifications && (
+              {formState.errors.subjects && (
                 <p className="text-destructive text-sm mt-1">
-                  {formState.errors.qualifications.message}
+                  {formState.errors.subjects.message}
                 </p>
               )}
             </div>
