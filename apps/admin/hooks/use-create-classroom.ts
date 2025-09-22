@@ -22,7 +22,6 @@ export default function useCreateClassroom() {
     });
 
   const onSubmit = async (values: CreateClassData) => {
-    console.log(values);
     const [response, error] = await createClassroomAction(values);
     if (error) {
       const errorMessage =

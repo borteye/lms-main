@@ -147,8 +147,8 @@ export default function EditStudentModal({ profile }: { profile?: boolean }) {
                 Class <span className="text-gray-400">(Optional)</span>
               </Label>
               <Select
-                value={watch("class")}
-                onValueChange={(value) => setValue("class", value)}
+                // value={watch("class")}
+                // onValueChange={(value) => setValue("class", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
@@ -168,11 +168,11 @@ export default function EditStudentModal({ profile }: { profile?: boolean }) {
                           ))} */}
                 </SelectContent>
               </Select>
-              {formState.errors.class && (
+              {/* {formState.errors.class && (
                 <p className="text-destructive text-sm mt-1">
                   {formState.errors.class.message}
                 </p>
-              )}
+              )} */}
             </div>
             <div>
               <Label
@@ -182,8 +182,8 @@ export default function EditStudentModal({ profile }: { profile?: boolean }) {
                 Class Level <span className="text-gray-400">(Optional)</span>
               </Label>
               <Select
-                value={watch("level")}
-                onValueChange={(value) => setValue("level", value)}
+                // value={watch("level")}
+                // onValueChange={(value) => setValue("level", value)}
               >
                 <SelectTrigger className={cn("mt-1 w-full")}>
                   <SelectValue
@@ -203,11 +203,11 @@ export default function EditStudentModal({ profile }: { profile?: boolean }) {
                           ))} */}
                 </SelectContent>
               </Select>
-              {formState.errors.level && (
+              {/* {formState.errors.level && (
                 <p className="text-destructive text-sm mt-1">
                   {formState.errors.level.message}
                 </p>
-              )}
+              )} */}
             </div>
             <div>
               <Label
