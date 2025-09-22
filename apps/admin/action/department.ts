@@ -2,7 +2,7 @@
 
 import { CreateDepartmentData } from "@/lib/schema";
 import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
-import { ApiResponse } from "@workspace/common/types";
+import { ApiResponse, Department } from "@workspace/common/types";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -30,5 +30,22 @@ export async function createDepartmentAction(
   return [response, null];
 }
 
+export async function getDepartmentsNameIdAction(): Promise<
+  [ApiResponse<Department[]> | null, ApiResponse<never> | null]
+> {
+  const response = await fetchWrapper<ApiResponse<Department[]>>(
+    "/api/departments",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+    }
+  );
+  if ("error" in response) {
+    console.error("Error creating department:", response.error);
+    return [null, response.error as ApiResponse<never>];
+  }
 
-
+  return [response, null];
+}

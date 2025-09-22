@@ -1,12 +1,14 @@
 "use server";
 
-import { SchoolOnboardingData } from "@/lib/schema";
-import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
 import {
-  ApiResponse,
-  LoginResponse,
-  MetaData
-} from "@workspace/common/types";
+  CreateCourseData,
+  CreateStudentData,
+  CreateSubjectData,
+  CreateTeacherData,
+  SchoolOnboardingData,
+} from "@/lib/schema";
+import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
+import { ApiResponse, LoginResponse, MetaData } from "@workspace/common/types";
 import { cookies } from "next/headers";
 
 export async function onboardSchoolAction(
@@ -45,8 +47,6 @@ export async function onboardSchoolAction(
   return [response, null];
 }
 
-
-
 export async function getTeachersAction(): Promise<
   [ApiResponse<MetaData[]> | null, ApiResponse<never> | null]
 > {
@@ -57,6 +57,89 @@ export async function getTeachersAction(): Promise<
       headers: {
         Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
       },
+    }
+  );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}
+
+export async function createTeacherAction(
+  values: CreateTeacherData
+): Promise<[ApiResponse<null> | null, ApiResponse<never> | null]> {
+  const response = await fetchWrapper<ApiResponse<null>>(
+    "/api/admin/school/teacher/create",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+      body: values,
+    }
+  );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}
+export async function createStudentAction(
+  values: CreateStudentData
+): Promise<[ApiResponse<null> | null, ApiResponse<never> | null]> {
+  const response = await fetchWrapper<ApiResponse<null>>(
+    "/api/admin/school/student/create",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+      body: values,
+    }
+  );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}
+
+export async function createSubjectAction(
+  values: CreateSubjectData
+): Promise<[ApiResponse<null> | null, ApiResponse<never> | null]> {
+  const response = await fetchWrapper<ApiResponse<null>>(
+    "/api/admin/school/subject/create",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+      body: values,
+    }
+  );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}
+
+export async function createCourseAction(
+  values: CreateCourseData
+): Promise<[ApiResponse<null> | null, ApiResponse<never> | null]> {
+  const response = await fetchWrapper<ApiResponse<null>>(
+    "/api/admin/school/course/create",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+      body: values,
     }
   );
 
