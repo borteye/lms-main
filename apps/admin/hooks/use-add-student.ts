@@ -30,7 +30,7 @@ export default function useAddStudent() {
     resolver: zodResolver(createStudentSchema),
   });
 
-  const onSubmit = async (values: CreateTeacherData) => {
+  const onSubmit = async (values: CreateStudentData) => {
     const [response, error] = await createStudentAction(values);
     if (error) {
       const errorMessage =

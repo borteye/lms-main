@@ -145,7 +145,7 @@ export const createStudentSchema = z.object({
     .string()
     .min(1, "Contact email is required")
     .email("Please enter a valid email address"),
-  class_id: z.string().optional(),
+  class_id: z.string().min(1, "Class is required"),
   stream: z.string().optional(),
 });
 export type CreateStudentData = z.infer<typeof createStudentSchema>;
