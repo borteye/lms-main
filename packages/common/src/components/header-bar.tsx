@@ -3,19 +3,15 @@
 import { Bell } from "lucide-react";
 import { useEffect, useState } from "react";
 import { MetaData } from "../types";
+import Link from "next/link";
+import { getInitials } from "../lib/utils";
 
 export default function HeaderBar({ role }: { role?: string }) {
-  const [user, setUser] = useState<MetaData | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    try {
-      const session = sessionStorage.getItem("user");
-      if (session) {
-        setUser(JSON.parse(session));
-      }
-    } catch (err) {
-      console.error("Failed to parse user session:", err);
-    }
+    const storedUser = localStorage.getItem("user");
+    setUser(storedUser ? JSON.parse(storedUser) : null);
   }, []);
 
   return (
@@ -25,19 +21,26 @@ export default function HeaderBar({ role }: { role?: string }) {
           <h1 className="text-black text-xl font-semibold">
             Dashboard Overview
           </h1>
-          <p className="text-sm capitalize">TenaClass {user?.role ?? role} Panel</p>
+          <p className="text-sm capitalize">
+            TenaClass {user?.role ?? role} Panel
+          </p>
         </div>
         <div className="flex items-center justify-end w-full gap-4">
-          <div className="border border-black bg-vivid-purple p-2.5 rounded-full">
+          <Link
+            href="/notifications"
+            className="border border-black bg-vivid-purple p-2.5 rounded-full"
+          >
             <Bell />
-          </div>
+          </Link>
           <div className="flex items-center gap-2">
             <div className="bg-primary h-11.5 w-11.5 border border-black flex items-center justify-center rounded-full text-white font-medium text-lg">
-              <p>B</p>
+              <p className="capitalize">
+                {getInitials(user?.first_name || user?.firstName)}
+              </p>
             </div>
             <div>
               <p className="text-sm font-bold capitalize">
-                {user?.first_name ?? ""}
+                {(user?.first_name || user?.firstName) ?? ""}
               </p>
               <p className="text-xs font-medium capitalize">
                 {user?.role ?? role}
