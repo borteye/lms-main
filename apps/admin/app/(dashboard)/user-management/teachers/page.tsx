@@ -27,6 +27,7 @@ import { cn } from "@workspace/ui/lib/utils";
 import EditTeacherModal from "@/components/user-management/edit-teacher-modal";
 import DeleteModal from "@workspace/common/components/delete-modal";
 import EllipseModal from "@workspace/common/components/ellipse-modal";
+import { UnderConstruction } from "@workspace/common/components/under-construction";
 
 export default function TeachersPage() {
   return (
@@ -150,7 +151,16 @@ export default function TeachersPage() {
               </p>
             </div>
           </TabsContent>
-          <TabsContent value="table"></TabsContent>
+          <TabsContent value="table">
+            <div>
+              <UnderConstruction
+                title="Teacher Table"
+                description="We're building a Teacher Table. Stay tuned for updates!"
+                variant="minimal"
+                size="lg"
+              />
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </div>

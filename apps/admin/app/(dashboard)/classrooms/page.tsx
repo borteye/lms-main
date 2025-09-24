@@ -11,6 +11,7 @@ import {
   TabsTrigger,
 } from "@workspace/ui/components/tabs";
 import { LayoutGrid, Table } from "lucide-react";
+import { UnderConstruction } from "@workspace/common/components/under-construction";
 
 export default async function ClassesPage() {
   const [response, _] = await getSchoolStatsForClasses();
@@ -53,7 +54,14 @@ export default async function ClassesPage() {
             </ClassroomCard>
           </TabsContent>
           <TabsContent value="table">
-            <div>table</div>
+            <div>
+              <UnderConstruction
+                title="Classroom Table"
+                description="We're building a Classroom Table. Stay tuned for updates!"
+                variant="minimal"
+                size="lg"
+              />
+            </div>
           </TabsContent>
         </Tabs>
       </div>

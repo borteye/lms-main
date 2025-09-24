@@ -8,7 +8,7 @@ import {
   SchoolOnboardingData,
 } from "@/lib/schema";
 import { fetchWrapper } from "@workspace/common/lib/fetch-wrapper";
-import { ApiResponse, LoginResponse, MetaData } from "@workspace/common/types";
+import { ApiResponse, LoginResponse, MetaData, Notification1 } from "@workspace/common/types";
 import { cookies } from "next/headers";
 
 export async function onboardSchoolAction(
@@ -142,6 +142,23 @@ export async function createCourseAction(
       body: values,
     }
   );
+
+  if ("error" in response) {
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}
+
+export async function getNotificationsAction(): Promise<
+  [ApiResponse<Notification1[]> | null, ApiResponse<never> | null]
+> {
+  const response = await fetchWrapper<ApiResponse<Notification1[]>>("/api/admin/school/notifications", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+    },
+  });
 
   if ("error" in response) {
     return [null, response.error as ApiResponse<never>];
