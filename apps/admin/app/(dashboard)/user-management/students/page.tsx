@@ -15,18 +15,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
-import {
-  Clock, Filter, LayoutGrid,
-  Search,
-  Table,
-  User
-} from "lucide-react";
+import { Clock, Filter, LayoutGrid, Search, Table, User } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import DeleteModal from "@workspace/common/components/delete-modal";
 import EllipseModal from "@workspace/common/components/ellipse-modal";
 import AddStudent from "@/components/user-management/add-student";
 import BulkStudentsUpload from "@/components/user-management/bulk-students-upload";
 import EditStudentModal from "@/components/user-management/edit-student-modal";
+import { UnderConstruction } from "@workspace/common/components/under-construction";
 
 export default function StudentsPage() {
   return (
@@ -151,7 +147,16 @@ export default function StudentsPage() {
               </p>
             </div>
           </TabsContent>
-          <TabsContent value="table"></TabsContent>
+          <TabsContent value="table">
+            <div>
+              <UnderConstruction
+                title="Student Table"
+                description="We're building a Student Table. Stay tuned for updates!"
+                variant="minimal"
+                size="lg"
+              />
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </div>

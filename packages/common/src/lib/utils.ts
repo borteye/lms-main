@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+import { format } from "date-fns";
 
 export const colors = [
   "bg-vivid-purple",
@@ -27,4 +28,15 @@ export function decrypt(encoded: string) {
     process.env.NEXT_PUBLIC_ENCRYPTION_SECRET as string
   );
   return bytes.toString(CryptoJS.enc.Utf8);
+}
+
+const now = new Date();
+export const formatNow = format(now, "EEEE, do MMMM, yyyy");
+
+export function getInitials(name: string): string {
+  if (!name) return "";
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("");
 }

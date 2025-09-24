@@ -26,8 +26,7 @@ import LoaderButton from "@workspace/ui/components/loading-button";
 import useAddStudent from "@/hooks/use-add-student";
 import { useSWR } from "@workspace/common/lib/client";
 import {
-  getClassesAction,
-  getClassroomLevelsAction,
+  getClassesAction
 } from "@workspace/common/actions/common";
 
 export default function AddStudent() {

@@ -10,6 +10,7 @@ import DepartmentCard from "@workspace/common/components/cards/department-card";
 import AddDepartment from "@/components/department/add-department";
 import EditDepartment from "@/components/department/edit-department";
 import { getSchoolStatsForDepartment } from "@/action/stats";
+import { UnderConstruction } from "@workspace/common/components/under-construction";
 
 export default async function DepartmentsPage() {
   const [response, _] = await getSchoolStatsForDepartment();
@@ -52,7 +53,14 @@ export default async function DepartmentsPage() {
             </DepartmentCard>
           </TabsContent>
           <TabsContent value="table">
-            <div>table</div>
+            <div>
+              <UnderConstruction
+                title="Department Table"
+                description="We're building a Department Table. Stay tuned for updates!"
+                variant="minimal"
+                size="lg"
+              />
+            </div>
           </TabsContent>
         </Tabs>
       </div>
