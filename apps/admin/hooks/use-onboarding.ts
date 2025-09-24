@@ -48,6 +48,10 @@ export default function useOnboarding() {
             "user",
             JSON.stringify(response?.data?.metaData)
           );
+          localStorage.setItem(
+            "user",
+            JSON.stringify(response?.data?.metaData)
+          );
           window.location.href = "/dashboard";
         }
         return true;

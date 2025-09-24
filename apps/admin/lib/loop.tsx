@@ -51,7 +51,7 @@ export const quickActions = [
     icon: <Building2 />,
     color: "bg-primary",
     card: "bg-vivid-purple/70",
-    link: "/department/new",
+    link: "/departments",
   },
   {
     id: 2,
@@ -61,17 +61,17 @@ export const quickActions = [
     icon: <School />,
     color: "bg-vivid-purple",
     card: "bg-success/70",
-    link: "/department/new",
+    link: "/classrooms",
   },
   {
     id: 3,
-    title: "Assign Subject Teacher",
-    sub: "Link teachers to subjects",
+    title: "Assign Course Teacher",
+    sub: "Link teachers to courses",
     button: "Assign Teacher",
     icon: <UserPlus />,
     color: "bg-green-500",
     card: "bg-teall",
-    link: "/department/new",
+    link: "/courses",
   },
   {
     id: 4,
@@ -81,6 +81,6 @@ export const quickActions = [
     icon: <Building2 />,
     color: "bg-yellow-400",
     card: "bg-primary/70",
-    link: "/department/new",
+    link: "/courses",
   },
 ];

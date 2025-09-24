@@ -33,6 +33,7 @@ export default function useSignIn() {
           "user",
           JSON.stringify(response?.data?.metaData)
         );
+        localStorage.setItem("user", JSON.stringify(response?.data?.metaData));
         toast.success(response.message);
         window.location.href = "/dashboard";
       }
