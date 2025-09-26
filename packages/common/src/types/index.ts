@@ -30,7 +30,7 @@ export interface MetaData {
 export interface SchoolStats {
   id: string;
   label: string;
-  value: number;
+  value: number | string;
 }
 
 export interface NamedEntity {
@@ -61,14 +61,74 @@ export type Notification1 = {
   role_target: string | null;
   title: string;
   message: string;
-  type: string; 
+  type: string;
   file_url: string;
   metadata: {
     validData: number;
     invalidData: number;
   };
-  created_at: string;   
-  expires_at: string;   
+  created_at: string;
+  expires_at: string;
   is_read: boolean;
   read_at: string | null;
+};
+
+export type Departments = {
+  department_id: number;
+  department_name: string;
+  department_code: string;
+  hod: string;
+  total_classes: string;
+  total_students: string;
+  total_teachers: string;
+  classes_with_streams: ClassesWithStreams[];
+};
+
+export interface ClassesWithStreams {
+  class_id: number;
+  class_name: string;
+  streams: { stream_id: number; stream_name: string }[] | null;
+}
+
+export interface DepartmentDetailsType {
+  department_id: number;
+  department_name: string;
+  department_code: string | null;
+  department_created_at: string;
+  hod_name: string;
+  total_courses: number;
+  total_students: number;
+  total_teachers: number;
+  department_stats: SchoolStats[];
+  courses_in_department: DepartmentCourse[];
+  teachers_in_department: DepartmentStaff[];
+  students_in_department: DepartmentStudent[];
+}
+
+export type DepartmentCourse = {
+  course_id: number;
+  course_name: string;
+  teacher: {
+    teacher_id: number;
+    teacher_name: string;
+  };
+  total_students: string;
+};
+
+export type DepartmentStaff = {
+  teacher_id: number;
+  teacher_name: string;
+  teacher_email: string;
+  teacher_phone: string;
+  role: "Head of Department" | "Teacher";
+  total_courses: number;
+};
+
+export type DepartmentStudent = {
+  student_id: number;
+  student_name: string;
+  student_class: string;
+  student_stream: string | null;
+  enrolled: string;
+  belongs_to_stream: boolean;
 };
