@@ -26,17 +26,48 @@ import {
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
 import { Check, ChevronsUpDown, SquarePen } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetTeachers from "@/hooks/use-get-teachers";
 import { cn } from "@workspace/ui/lib/utils";
+import { DepartmentDetailsType, Departments } from "@workspace/common/types";
+import { useEditDepartment } from "@/hooks/use-department";
+import { generateDepartmentCode } from "@/lib/utils";
+import LoaderButton from "@workspace/ui/components/loading-button";
 
-export default function EditDepartment() {
-  const [open, setOpen] = useState(false);
-  const [value, setValues] = useState("");
+export default function EditDepartment({
+  data: department,
+}: {
+  data: Departments | DepartmentDetailsType;
+}) {
+  const {
+    data,
+    isLoading,
+    searchTeacher,
+    setSearchTeacher,
+    teacherName,
+    setTeacherName,
+  } = useGetTeachers();
+  const {
+    open,
+    setOpen,
+    isDialogOpen,
+    setIsDialogOpen,
+    watch,
+    setValue,
+    formState,
+    register,
+    handleSubmit,
+    onSubmit,
+    reset,
+    getValues,
+  } = useEditDepartment(department);
 
-  const { data, isLoading } = useGetTeachers();
+  const nameValue = watch("name");
+  useEffect(() => {
+    setValue("departmentCode", generateDepartmentCode(nameValue));
+  }, [nameValue, setValue]);
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button>
           <SquarePen /> Edit Department
@@ -51,44 +82,43 @@ export default function EditDepartment() {
             Edit Department
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-4 mt-4">
+        <form
+          onSubmit={handleSubmit(() =>
+            onSubmit(getValues(), department?.department_id)
+          )}
+          className="flex flex-col gap-4 mt-4"
+        >
           <div>
-            <Label
-              htmlFor="address"
-              className="text-sm font-medium text-gray-700"
-            >
+            <Label htmlFor="name" className="text-sm font-medium text-gray-700">
               Department Name <span className="text-destructive">*</span>
             </Label>
             <Input
-              id="address"
-              // {...register("address")}
-              placeholder="Enter street address"
+              id="name"
+              {...register("name")}
+              placeholder="Enter department name"
               className="mt-1"
             />
-            {/* {formState.errors.address && (
-                        <p className="text-destructive text-sm mt-1">
-                          {formState.errors.address.message}
-                        </p>
-                      )} */}
+            {formState.errors.name && (
+              <p className="text-destructive text-sm mt-1">
+                {formState.errors.name.message}
+              </p>
+            )}
           </div>
+
           <div>
             <Label
-              htmlFor="address"
+              htmlFor="departmentCode"
               className="text-sm font-medium text-gray-700"
             >
-              Department Code <span className="text-gray-400">(Optional)</span>
+              Department Code
             </Label>
             <Input
-              id="address"
-              // {...register("address")}
-              placeholder="Enter street address"
+              id="departmentCode"
+              {...register("departmentCode")}
+              readOnly
+              placeholder="Enter department code"
               className="mt-1"
             />
-            {/* {formState.errors.address && (
-                        <p className="text-destructive text-sm mt-1">
-                          {formState.errors.address.message}
-                        </p>
-                      )} */}
           </div>
 
           <div>
@@ -109,23 +139,39 @@ export default function EditDepartment() {
                 >
                   {isLoading
                     ? "Fetching teachers"
-                    : "Select Head of Department"}
+                    : teacherName || "Select Head of Department"}
                   <ChevronsUpDown className="opacity-50" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
                 <Command>
-                  <CommandInput placeholder="Search staff" />
+                  <CommandInput
+                    placeholder="Search staff"
+                    onValueChange={setSearchTeacher}
+                    value={searchTeacher}
+                  />
                   <CommandList>
                     <CommandEmpty>No teacher found.</CommandEmpty>
                     <CommandGroup>
                       {data?.map((teacher, i) => (
-                        <CommandItem key={i} value={String(teacher.id)}>
+                        <CommandItem
+                          key={i}
+                          value={String(teacher.id)}
+                          onSelect={(currentValue) => {
+                            setValue("headOfDepartment", currentValue, {
+                              shouldValidate: true,
+                            });
+                            setTeacherName(
+                              teacher.first_name + " " + teacher.last_name
+                            );
+                            setOpen(false);
+                          }}
+                        >
                           {teacher.first_name} {teacher.last_name}
                           <Check
                             className={cn(
                               "ml-auto",
-                              value === String(teacher.id)
+                              watch("headOfDepartment") === String(teacher.id)
                                 ? "opacity-100"
                                 : "opacity-0"
                             )}
@@ -138,13 +184,26 @@ export default function EditDepartment() {
               </PopoverContent>
             </Popover>
           </div>
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Close</Button>
-          </DialogClose>
-          <Button>Create Department</Button>
-        </DialogFooter>
+
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button
+                onClick={() => reset()}
+                variant="outline"
+                disabled={formState.isSubmitting}
+              >
+                Close
+              </Button>
+            </DialogClose>
+            <LoaderButton
+              disabled={formState.isSubmitting}
+              loading={formState.isSubmitting}
+              type="submit"
+            >
+              Update Department
+            </LoaderButton>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

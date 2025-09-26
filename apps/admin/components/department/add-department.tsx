@@ -29,7 +29,7 @@ import { Label } from "@workspace/ui/components/label";
 import { cn } from "@workspace/ui/lib/utils";
 import { Building2, Check, ChevronsUpDown, Plus } from "lucide-react";
 import useGetTeachers from "@/hooks/use-get-teachers";
-import useCreateDepartment from "@/hooks/use-create-department";
+import {useCreateDepartment} from "@/hooks/use-department";
 import LoaderButton from "@workspace/ui/components/loading-button";
 import { generateDepartmentCode } from "@/lib/utils";
 import { useEffect } from "react";
