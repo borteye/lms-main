@@ -1,3 +1,4 @@
+import { formatYear } from "@workspace/common/lib/utils";
 import { SchoolStats } from "@workspace/common/types";
 import { cn } from "@workspace/ui/lib/utils";
 import {
@@ -12,6 +13,7 @@ import {
   Trophy,
   FileText,
   ChartNoAxesCombined,
+  Calendar,
 } from "lucide-react";
 
 const colors: Record<
@@ -78,6 +80,12 @@ const colors: Record<
     icon_bg: "bg-success",
     text: "text-success",
   },
+  created_at: {
+    bg: "bg-vivid-purple/80",
+    hover_bg: "hover:bg-vivid-purple",
+    icon_bg: "bg-yellow-400",
+    text: "text-yellow-400",
+  },
 };
 
 const icons: Record<string, React.ElementType> = {
@@ -91,6 +99,7 @@ const icons: Record<string, React.ElementType> = {
   average_grade: Trophy,
   assignment: FileText,
   overall_progress: ChartNoAxesCombined,
+  created_at: Calendar,
 };
 
 export default function StatisticsCard({ data }: { data?: SchoolStats }) {
@@ -121,7 +130,9 @@ export default function StatisticsCard({ data }: { data?: SchoolStats }) {
       </div>
       <div>
         <h1 className={cn("text-4xl font-semibold", selectedColor?.text)}>
-          {data?.value}
+          {data?.id === "created_at"
+            ? formatYear(data?.value as string)
+            : data?.value}
         </h1>
       </div>
     </div>

@@ -85,3 +85,24 @@ export async function getClassesAction(): Promise<
 
   return [response, null];
 }
+
+export async function deleteDepartmentAction(
+  departmentId: number
+): Promise<[ApiResponse<null> | null, ApiResponse<never> | null]> {
+  const response = await fetchWrapper<ApiResponse<null>>(
+    `/api/admin/department/delete/${departmentId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${(await cookies()).get("__tenaClass_access_token")?.value}`,
+      },
+    }
+  );
+
+  if ("error" in response) {
+    console.error("Error deleting department:", response.error);
+    return [null, response.error as ApiResponse<never>];
+  }
+
+  return [response, null];
+}

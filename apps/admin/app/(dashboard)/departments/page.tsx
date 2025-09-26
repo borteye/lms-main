@@ -11,9 +11,13 @@ import AddDepartment from "@/components/department/add-department";
 import EditDepartment from "@/components/department/edit-department";
 import { getSchoolStatsForDepartment } from "@/action/stats";
 import { UnderConstruction } from "@workspace/common/components/under-construction";
+import { getDepartmentsAction } from "@/action/department";
+import { Departments } from "@workspace/common/types";
+import { cn } from "@workspace/ui/lib/utils";
 
 export default async function DepartmentsPage() {
-  const [response, _] = await getSchoolStatsForDepartment();
+  const [[schoolStats, schoolStatsError], [departments, departmentsError]] =
+    await Promise.all([getSchoolStatsForDepartment(), getDepartmentsAction()]);
 
   return (
     <div className="flex flex-col gap-y-12">
@@ -29,8 +33,8 @@ export default async function DepartmentsPage() {
         <AddDepartment />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {response &&
-          response?.data?.map((stat, i) => (
+        {schoolStats &&
+          schoolStats?.data?.map((stat, i) => (
             <StatisticsCard data={stat} key={i} />
           ))}
       </div>
@@ -46,11 +50,24 @@ export default async function DepartmentsPage() {
           </TabsList>
           <TabsContent
             value="cards"
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8"
+            className={cn(
+              "gap-4 mt-8",
+              !departments || departments?.data?.length === 0
+                ? ""
+                : "grid grid-cols-1 md:grid-cols-2"
+            )}
           >
-            <DepartmentCard>
-              <EditDepartment />
-            </DepartmentCard>
+            {departments &&
+              departments?.data?.map((department, i) => (
+                <DepartmentCard key={i} data={department}>
+                  <EditDepartment data={department}  />
+                </DepartmentCard>
+              ))}
+            {(!departments || departments?.data?.length === 0) && (
+              <h1 className="text-2xl font-semibold text-center">
+                No Department available at the moment
+              </h1>
+            )}
           </TabsContent>
           <TabsContent value="table">
             <div>

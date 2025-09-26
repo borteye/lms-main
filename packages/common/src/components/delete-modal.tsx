@@ -9,9 +9,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@workspace/ui/components/dialog";
+import LoaderButton from "@workspace/ui/components/loading-button";
 import { Trash2 } from "lucide-react";
 
-export default function DeleteModal({ subject }: { subject?: string }) {
+export default function DeleteModal({
+  subject,
+  onDelete,
+  loading: isLoading,
+}: {
+  subject?: string;
+  onDelete?: () => void;
+  loading?: boolean;
+}) {
   return (
     <Dialog>
       <DialogTrigger>
@@ -37,7 +46,14 @@ export default function DeleteModal({ subject }: { subject?: string }) {
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button className="bg-destructive">Confirm</Button>
+          <LoaderButton
+            size="default"
+            loading={isLoading as boolean}
+            className="bg-destructive"
+            onClick={onDelete}
+          >
+            {isLoading ? "Deleting..." : "Confirm"}
+          </LoaderButton>
         </DialogFooter>
       </DialogContent>
     </Dialog>

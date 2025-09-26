@@ -1,5 +1,5 @@
 import CryptoJS from "crypto-js";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 export const colors = [
   "bg-vivid-purple",
@@ -40,3 +40,35 @@ export function getInitials(name: string): string {
     .map((word) => word.charAt(0))
     .join("");
 }
+
+export function formatPrettyDate(dateString: string): string {
+  if (!dateString) return "";
+  const date = parseISO(dateString);
+  return format(date, "MMM dd, yyyy");
+}
+
+export function formatYear(dateString: string): string {
+  if (!dateString) return "";
+  const date = parseISO(dateString);
+  return format(date, "yyyy");
+}
+
+export type CardColor = {
+  bg: string;
+  icon_bg: string;
+};
+
+// pool of matching color pairs
+export const cardColorPairs: CardColor[] = [
+  { bg: "bg-vivid-purple/80", icon_bg: "bg-yellow-400" },
+  { bg: "bg-primary/80", icon_bg: "bg-success" },
+  { bg: "bg-yellow-200", icon_bg: "bg-teall" },
+  { bg: "bg-success/80", icon_bg: "bg-vivid-purple" },
+  { bg: "bg-teall/80", icon_bg: "bg-primary" },
+];
+
+// function to get a random pair
+export const getRandomCardColor = (): CardColor => {
+  const randomIndex = Math.floor(Math.random() * cardColorPairs.length);
+  return cardColorPairs[randomIndex]!;
+};
